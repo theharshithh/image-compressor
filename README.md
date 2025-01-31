@@ -19,17 +19,40 @@ This project implements image compression using Huffman coding, demonstrating th
 - Pillow (PIL)
 - Matplotlib
 - tqdm
+- Streamlit
+- Graphviz
 
-Install the required packages using:
-```bash
-pip install -r requirements.txt
-```
+We recommend using `uv` for dependency management as it's significantly faster than pip. Here's how to set up:
+
+1. First, install `uv` if you haven't already:
+   ```bash
+   curl -LsSf https://astral.sh/uv/install.sh | sh
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   uv venv
+   source .venv/bin/activate  # On Unix/macOS
+   # or
+   .venv\Scripts\activate  # On Windows
+   ```
+
+3. Install dependencies using uv:
+   ```bash
+   uv pip install -r requirements.txt
+   ```
+
+   Alternatively, you can use:
+   ```bash
+   uv sync
+   ```
 
 ## Project Structure
 
 ```
 .
 ├── image_compressor.py  # Main implementation of the compression algorithm
+├── app.py              # Streamlit web application
 ├── demo.py             # Demo script to showcase compression
 ├── requirements.txt    # Project dependencies
 ├── samples/           # Directory for test images
@@ -38,22 +61,25 @@ pip install -r requirements.txt
 
 ## How to Use
 
-1. Install the required dependencies:
+1. Set up the environment as described in the Requirements section.
+
+2. Place your test images in the `samples` directory or use the streamlit app to upload images.
+
+3. Run the Streamlit app:
    ```bash
-   pip install -r requirements.txt
+   streamlit run app.py
    ```
 
-2. Place your test images in the `samples` directory.
-
-3. Run the demo script:
+   Or run the demo script:
    ```bash
    python demo.py
    ```
 
-The demo will:
-- Process each image in the samples directory
+The application will:
+- Process uploaded images (or images in samples directory for demo)
 - Show the original and compressed images
 - Display compression metrics
+- Visualize the Huffman tree and code distribution
 - Save the compressed and decompressed versions
 
 ## Technical Details
@@ -89,10 +115,11 @@ The following metrics are calculated and displayed:
 
 ## Example Output
 
-When you run the demo script, you'll see:
+When you run the application, you'll see:
 1. Original image alongside the compressed version
 2. Histogram showing the distribution of Huffman codes
-3. Detailed compression metrics
+3. Interactive Huffman tree visualization
+4. Detailed compression metrics
 
 ## Contributing
 
